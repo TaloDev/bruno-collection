@@ -1,0 +1,52 @@
+info:
+  name: Player auth - login
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/players/auth/login"
+  body:
+    type: json
+    data: |-
+      {
+        "identifier": "{{identifier}}",
+        "password": "{{password}}",
+        "withRefresh": true
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const data = res.getBody();
+
+        if (data.alias) {
+          bru.setEnvVar('aliasId', data.alias.id)
+          bru.setEnvVar('playerId', data.alias.player.id)
+          bru.setEnvVar('socketToken', data.socketToken)
+          if (data.refreshToken) {
+            bru.setEnvVar('refreshToken', data.refreshToken)
+            bru.setVar('sessionToken', data.sessionToken)
+          } else {
+            bru.setEnvVar('sessionToken', data.sessionToken)
+          }
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Login to a player account.
+
+  **Authentication**
+  - Required scopes: `read:players`, `write:players`.
+
+  **Body**
+  - `identifier` - The unique identifier of the player.
+  - `password` - The player's password.
+  - `withRefresh` (optional, recommended) - When `true`, the response includes a `refreshToken` (30-day lifetime) alongside a `sessionToken` that becomes short-lived (15 minutes). When `false` or omitted, the `sessionToken` is long-lived (no expiry) and no `refreshToken` is returned.

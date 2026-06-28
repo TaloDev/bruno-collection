@@ -1,0 +1,22 @@
+info:
+  name: Players - create socket token
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/players/socket-token"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Create a socket token for a player.
+
+  **Authentication**
+  - Required scope: `write:players`.
+  - Authenticated by: `X-Talo-Alias`.

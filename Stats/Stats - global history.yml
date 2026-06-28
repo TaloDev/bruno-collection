@@ -1,0 +1,49 @@
+info:
+  name: Stats - global history
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: "{{baseUrl}}/v1/game-stats/:statInternalName/global-history"
+  params:
+    - name: page
+      value: "0"
+      type: query
+    - name: playerId
+      value: "{{playerId}}"
+      type: query
+      disabled: true
+    - name: startDate
+      value: ""
+      type: query
+      disabled: true
+    - name: endDate
+      value: ""
+      type: query
+      disabled: true
+    - name: statInternalName
+      value: "{{statInternalName}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Get a history of changes to a global stat.
+
+  **Authentication**
+  - Required scope: `read:gameStats`.
+
+  **Path**
+  - `{{statInternalName}}` - The internal name of the stat.
+
+  **Query**
+  - `page` (optional, default `0`) - The current pagination index.
+  - `playerId` (optional) - Filter snapshots by this player ID.
+  - `startDate` (optional) - UTC date (YYYY-MM-DD), ISO 8601 datetime, or millisecond timestamp.
+  - `endDate` (optional) - Same format as `startDate`.

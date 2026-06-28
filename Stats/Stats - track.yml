@@ -1,0 +1,38 @@
+info:
+  name: Stats - track
+  type: http
+  seq: 7
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/v1/game-stats/:statInternalName"
+  params:
+    - name: statInternalName
+      value: "{{statInternalName}}"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "change": 5
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Update a stat value. Set the `X-Talo-Continuity-Timestamp` header (milliseconds since epoch) to back-date the resulting snapshot (the API key must have the `write:continuityRequests` scope, and the timestamp must be in the past) - use this to record a stat change that occurred before the request.
+
+  **Authentication**
+  - Required scope: `write:gameStats`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Path**
+  - `{{statInternalName}}` - The internal name of the stat.
+
+  **Body**
+  - `change` - The amount to add to the current value (can be negative).

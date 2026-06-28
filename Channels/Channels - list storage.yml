@@ -1,0 +1,38 @@
+info:
+  name: Channels - list storage
+  type: http
+  seq: 13
+
+http:
+  method: GET
+  url: "{{baseUrl}}/v1/game-channels/:channelId/storage/list?propKeys={{propKey1}}&propKeys={{propKey2}}"
+  params:
+    - name: propKeys
+      value: "{{propKey1}}"
+      type: query
+    - name: propKeys
+      value: "{{propKey2}}"
+      type: query
+    - name: channelId
+      value: "{{channelId}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Get multiple storage props from a game channel.
+
+  **Authentication**
+  - Required scope: `read:gameChannels`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Path**
+  - `{{channelId}}` - The ID of the channel.
+
+  **Query**
+  - `propKeys` - Storage keys to retrieve. Pass the same query parameter once per key (1-50 keys).

@@ -1,0 +1,50 @@
+info:
+  name: Player auth - verify
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/players/auth/verify"
+  body:
+    type: json
+    data: |-
+      {
+        "aliasId": {{aliasId}},
+        "code": "{{verifyCode}}",
+        "withRefresh": true
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const data = res.getBody();
+        bru.setEnvVar('aliasId', data.alias.id)
+        bru.setEnvVar('playerId', data.alias.player.id)
+        bru.setEnvVar('socketToken', data.socketToken)
+        bru.setEnvVar('sessionToken', data.sessionToken)
+        if (data.refreshToken) {
+          bru.setEnvVar('refreshToken', data.refreshToken)
+          bru.setVar('sessionToken', data.sessionToken)
+        } else {
+          bru.setEnvVar('sessionToken', data.sessionToken)
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Provide the verification code to start the player session.
+
+  **Authentication**
+  - Required scopes: `read:players`, `write:players`.
+
+  **Body**
+  - `aliasId` - The ID of the alias to verify.
+  - `code` - The 6-digit verification code sent to the player (as a string).
+  - `withRefresh` (optional, recommended) - When `true`, the response includes a `refreshToken` (30-day lifetime) alongside a `sessionToken` that becomes short-lived (15 minutes). When `false` or omitted, the `sessionToken` is long-lived (no expiry) and no `refreshToken` is returned.

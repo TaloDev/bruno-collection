@@ -1,0 +1,6 @@
+name: Prod
+variables:
+  - name: baseUrl
+    value: https://api.trytalo.com
+  - secret: true
+    name: apiKey

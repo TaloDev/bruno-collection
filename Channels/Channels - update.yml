@@ -1,0 +1,48 @@
+info:
+  name: Channels - update
+  type: http
+  seq: 9
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/v1/game-channels/:channelId"
+  params:
+    - name: channelId
+      value: "{{channelId}}"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "name": "{{channelName}}",
+        "props": [],
+        "ownerAliasId": null,
+        "autoCleanup": false,
+        "private": false,
+        "temporaryMembership": false
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Update a game channel.
+
+  **Authentication**
+  - Required scope: `write:gameChannels`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Path**
+  - `{{channelId}}` - The ID of the channel.
+
+  **Body**
+  - `name` (optional) - The new name of the channel.
+  - `props` (optional) - Key/value pairs (set `value` to `null` to delete).
+  - `ownerAliasId` (optional) - The ID of the new owner of the channel.
+  - `autoCleanup` (optional, default `false`) - Delete the channel when the owner leaves or the channel empties.
+  - `private` (optional, default `false`) - Players can only join the channel if they are invited. The channel will not appear in the channels list.
+  - `temporaryMembership` (optional, default `false`) - Remove members when they go offline.

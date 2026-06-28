@@ -1,0 +1,28 @@
+info:
+  name: Player presence - find
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/v1/players/presence/:playerId"
+  params:
+    - name: playerId
+      value: "{{playerId}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Get a player's online status and custom status.
+
+  **Authentication**
+  - Required scope: `read:playerPresence`.
+
+  **Path**
+  - `{{playerId}}` - The ID of the player.

@@ -1,0 +1,35 @@
+info:
+  name: Saves - create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/game-saves"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "{{saveName}}",
+        "content": {
+          "example": true
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Create a save.
+
+  **Authentication**
+  - Required scope: `write:gameSaves`.
+  - Authenticated by: `X-Talo-Player`.
+
+  **Body**
+  - `name` - The name of the save.
+  - `content` - The save's content (JSON object or string).

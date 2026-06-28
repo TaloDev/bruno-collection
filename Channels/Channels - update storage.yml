@@ -1,0 +1,55 @@
+info:
+  name: Channels - update storage
+  type: http
+  seq: 11
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/v1/game-channels/:channelId/storage"
+  params:
+    - name: channelId
+      value: "{{channelId}}"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "props": [
+          {
+            "key": "colour",
+            "value": {{$randomColor}}
+          },
+          {
+            "key": "catchPhrase",
+            "value": {{$randomCatchPhrase}}
+          },
+          {
+            "key": "items[]",
+            "value": "sword"
+          },
+          {
+            "key": "items[]",
+            "value": "shield"
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Create or update storage props in a game channel.
+
+  **Authentication**
+  - Required scope: `write:gameChannels`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Path**
+  - `{{channelId}}` - The ID of the channel.
+
+  **Body**
+  - `props` - Array of key/value pairs. Set `value` to `null` to delete a property.

@@ -1,0 +1,29 @@
+info:
+  name: Channels - leave
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/game-channels/:channelId/leave"
+  params:
+    - name: channelId
+      value: "{{channelId}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Leave a game channel.
+
+  **Authentication**
+  - Required scope: `write:gameChannels`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Path**
+  - `{{channelId}}` - The ID of the channel.

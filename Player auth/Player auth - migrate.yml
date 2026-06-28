@@ -1,0 +1,35 @@
+info:
+  name: Player auth - migrate
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/players/auth/migrate"
+  body:
+    type: json
+    data: |-
+      {
+        "currentPassword": "{{currentPassword}}",
+        "service": "{{migrateToService}}",
+        "identifier": "{{newIdentifier}}"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Migrate a Talo player account to another service. The player's auth details are removed; they must log in using the new service and identifier.
+
+  **Authentication**
+  - Required scopes: `read:players`, `write:players`.
+  - Authenticated by: `X-Talo-Player` + `X-Talo-Alias` + `X-Talo-Session`.
+
+  **Body**
+  - `currentPassword` - The current password of the player.
+  - `service` - The service to migrate to (e.g. `steam`, `google_play_games`). Cannot be `talo`.
+  - `identifier` - The new identifier for the player.

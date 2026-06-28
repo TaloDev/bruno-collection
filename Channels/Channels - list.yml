@@ -1,0 +1,43 @@
+info:
+  name: Channels - list
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: "{{baseUrl}}/v1/game-channels"
+  params:
+    - name: page
+      value: "0"
+      type: query
+    - name: search
+      value: ""
+      type: query
+      disabled: true
+    - name: propKey
+      value: ""
+      type: query
+      disabled: true
+    - name: propValue
+      value: ""
+      type: query
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  List game channels.
+
+  **Authentication**
+  - Required scope: `read:gameChannels`.
+
+  **Query**
+  - `page` (optional, default `0`) - The current pagination index.
+  - `search` (optional) - Search term to filter channels by name.
+  - `propKey` (optional) - Only return channels with this prop key.
+  - `propValue` (optional) - Only return channels with a matching prop key and value.

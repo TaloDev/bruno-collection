@@ -1,0 +1,38 @@
+info:
+  name: Channels - invite
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/game-channels/:channelId/invite"
+  params:
+    - name: channelId
+      value: "{{channelId}}"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "inviteeAliasId": {{inviteeAliasId}}
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Invite another player to a game channel. Used for private channels.
+
+  **Authentication**
+  - Required scope: `write:gameChannels`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Path**
+  - `{{channelId}}` - The ID of the channel.
+
+  **Body**
+  - `inviteeAliasId` - The ID of the player alias to invite.

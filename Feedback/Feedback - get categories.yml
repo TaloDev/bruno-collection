@@ -1,0 +1,21 @@
+info:
+  name: Feedback - get categories
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/v1/game-feedback/categories"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Get available feedback categories.
+
+  **Authentication**
+  - Required scope: `read:gameFeedback`.

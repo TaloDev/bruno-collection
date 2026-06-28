@@ -1,0 +1,52 @@
+info:
+  name: Player auth - register
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/players/auth/register"
+  body:
+    type: json
+    data: |-
+      {
+        "identifier": "{{identifier}}",
+        "password": "{{password}}",
+        "verificationEnabled": false,
+        "withRefresh": true
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const data = res.getBody();
+        bru.setEnvVar('aliasId', data.alias.id)
+        bru.setEnvVar('playerId', data.alias.player.id)
+        bru.setEnvVar('socketToken', data.socketToken)
+        if (data.refreshToken) {
+          bru.setEnvVar('refreshToken', data.refreshToken)
+          bru.setVar('sessionToken', data.sessionToken)
+        } else {
+          bru.setEnvVar('sessionToken', data.sessionToken)
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Create a new player account.
+
+  **Authentication**
+  - Required scopes: `read:players`, `write:players`.
+
+  **Body**
+  - `identifier` - The unique identifier of the player (username, email, or numeric ID).
+  - `password` - The password the player will log in with.
+  - `verificationEnabled` (optional) - When `true`, the player must enter a verification code before logging in.
+  - `email` (optional) - Required when `verificationEnabled` is `true`; also used for password resets.
+  - `withRefresh` (optional, recommended) - When `true`, the response includes a `refreshToken` (30-day lifetime) alongside a `sessionToken` that becomes short-lived (15 minutes). When `false` or omitted, the `sessionToken` is long-lived (no expiry) and no `refreshToken` is returned.

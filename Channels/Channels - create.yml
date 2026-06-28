@@ -1,0 +1,38 @@
+info:
+  name: Channels - create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/game-channels"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "{{channelName}}",
+        "autoCleanup": false,
+        "private": false,
+        "temporaryMembership": false
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Create a game channel.
+
+  **Authentication**
+  - Required scope: `write:gameChannels`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Body**
+  - `name` - The name of the channel.
+  - `props` (optional) - Key/value pairs (set `value` to `null` to delete).
+  - `autoCleanup` (optional, default `false`) - Delete the channel when the owner leaves or the channel empties.
+  - `private` (optional, default `false`) - Players can only join the channel if they are invited. The channel will not appear in the channels list.
+  - `temporaryMembership` (optional, default `false`) - Remove members when they go offline.

@@ -1,0 +1,44 @@
+info:
+  name: Player relationships - subscriptions
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: "{{baseUrl}}/v1/players/relationships/subscriptions"
+  params:
+    - name: page
+      value: "0"
+      type: query
+    - name: confirmed
+      value: "true"
+      type: query
+      disabled: true
+    - name: aliasId
+      value: "{{targetAliasId}}"
+      type: query
+      disabled: true
+    - name: relationshipType
+      value: unidirectional
+      type: query
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  List subscriptions where the current player is the subscriber.
+
+  **Authentication**
+  - Required scope: `read:playerRelationships`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Query**
+  - `page` (optional, default `0`) - Pagination index.
+  - `confirmed` (optional) - Filter by confirmation status (`true` or `false`).
+  - `aliasId` (optional) - Filter by a specific subscribed-to alias ID.
+  - `relationshipType` (optional) - Filter by relationship type (`unidirectional` or `bidirectional`).

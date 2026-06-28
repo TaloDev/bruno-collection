@@ -1,0 +1,14 @@
+info:
+  name: Channels
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit
+
+docs:
+  content: |
+    Channels are a way to send messages between players in your game. You can use channels to create chat rooms, send notifications or create any other kind of messaging system you can think of.
+
+    Learn more about channels [here](https://trytalo.com/channels?utm_source=bruno-docs).
+  type: text/markdown

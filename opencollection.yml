@@ -1,0 +1,49 @@
+opencollection: 1.0.0
+
+info:
+  name: Talo API
+config:
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ""
+      port: ""
+      auth:
+        username: ""
+        password: ""
+      bypassProxy: ""
+
+request:
+  headers:
+    - name: X-Talo-Include-Dev-Data
+      value: "1"
+    - name: X-Talo-Alias
+      value: "{{aliasId}}"
+    - name: X-Talo-Player
+      value: "{{playerId}}"
+    - name: X-Talo-Session
+      value: "{{sessionToken}}"
+  auth:
+    type: bearer
+    token: "{{apiKey}}"
+
+docs:
+  content: |-
+    [Talo](https://trytalo.com?utm_source=bruno-docs) is the easiest way to add leaderboards, player authentication, peer-to-peer multiplayer and more to your game.
+
+    Visit the [Talo docs](https://docs.trytalo.com/docs/http/authentication) for more details:
+    - Request and response examples
+    - Common errors
+    - Authentication guides
+
+    ---
+
+    Last updated **28th June 2026**
+  type: text/markdown
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git

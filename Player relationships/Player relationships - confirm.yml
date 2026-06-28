@@ -1,0 +1,29 @@
+info:
+  name: Player relationships - confirm
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/v1/players/relationships/:subscriptionId/confirm"
+  params:
+    - name: subscriptionId
+      value: "{{subscriptionId}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Confirm a pending subscription request.
+
+  **Authentication**
+  - Required scope: `write:playerRelationships`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Path**
+  - `{{subscriptionId}}` - The ID of the subscription request to confirm.

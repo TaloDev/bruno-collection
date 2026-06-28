@@ -1,0 +1,33 @@
+info:
+  name: Player auth - change email
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/players/auth/change_email"
+  body:
+    type: json
+    data: |-
+      {
+        "currentPassword": "{{currentPassword}}",
+        "newEmail": "{{newEmail}}"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Change the email address of a player account.
+
+  **Authentication**
+  - Required scopes: `read:players`, `write:players`.
+  - Authenticated by: `X-Talo-Player` + `X-Talo-Alias` + `X-Talo-Session`.
+
+  **Body**
+  - `currentPassword` - The current password of the player.
+  - `newEmail` - The new email address for the player.

@@ -1,0 +1,30 @@
+info:
+  name: Player auth - refresh
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/players/auth/refresh"
+  body:
+    type: json
+    data: |-
+      {
+        "refreshToken": "{{refreshToken}}"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Refresh a player session token using a refresh token.
+
+  **Authentication**
+  - Required scopes: `read:players`, `write:players`.
+
+  **Body**
+  - `refreshToken` - The refresh token issued after a successful login or registration.

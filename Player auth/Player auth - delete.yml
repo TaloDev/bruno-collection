@@ -1,0 +1,31 @@
+info:
+  name: Player auth - delete
+  type: http
+  seq: 6
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/v1/players/auth"
+  body:
+    type: json
+    data: |-
+      {
+        "currentPassword": "{{currentPassword}}"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Delete a player account.
+
+  **Authentication**
+  - Required scopes: `read:players`, `write:players`.
+  - Authenticated by: `X-Talo-Player` + `X-Talo-Alias` + `X-Talo-Session`.
+
+  **Body**
+  - `currentPassword` - The current password of the player.

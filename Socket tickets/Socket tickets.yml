@@ -1,0 +1,17 @@
+info:
+  name: Socket tickets
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/socket-tickets"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Create a socket ticket. The ticket is valid for 5 minutes and can only be used once.

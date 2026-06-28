@@ -1,0 +1,33 @@
+info:
+  name: Player auth - change identifier
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/players/auth/change_identifier"
+  body:
+    type: json
+    data: |-
+      {
+        "currentPassword": "{{currentPassword}}",
+        "newIdentifier": "{{newIdentifier}}"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Change the identifier of a player account.
+
+  **Authentication**
+  - Required scopes: `read:players`, `write:players`.
+  - Authenticated by: `X-Talo-Player` + `X-Talo-Alias` + `X-Talo-Session`.
+
+  **Body**
+  - `currentPassword` - The current password of the player.
+  - `newIdentifier` - The new identifier for the player.

@@ -1,0 +1,14 @@
+info:
+  name: Feedback
+  type: folder
+  seq: 4
+
+request:
+  auth: inherit
+
+docs:
+  content: |
+    Using Talo's Feedback service, you can effortlessly collect valuable player feedback to improve your game's experience. Players can send feedback directly from within the game, providing insights that can help you understand their needs and preferences better.
+
+    Learn more about feedback [here](https://trytalo.com/feedback?utm_source=bruno-docs).
+  type: text/markdown

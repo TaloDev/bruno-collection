@@ -1,0 +1,45 @@
+info:
+  name: Feedback - create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/game-feedback/categories/:feedbackCategoryInternalName"
+  params:
+    - name: feedbackCategoryInternalName
+      value: "{{feedbackCategoryInternalName}}"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "comment": "There is a bug",
+        "props": [
+          {
+            "key": "currentLevel",
+            "value": "5"
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Create a player feedback entry. Set the `X-Talo-Continuity-Timestamp` header (milliseconds since epoch) to back-date `createdAt` (the API key must have the `write:continuityRequests` scope, and the timestamp must be in the past) - use this to record feedback for a session that occurred before the request.
+
+  **Authentication**
+  - Required scope: `write:gameFeedback`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Path**
+  - `{{feedbackCategoryInternalName}}` - The internal name of the feedback category.
+
+  **Body**
+  - `comment` - The comment made by the player (1-5000 characters).
+  - `props` (optional) - Key/value pairs.

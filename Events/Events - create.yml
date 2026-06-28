@@ -1,0 +1,55 @@
+info:
+  name: Events - create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/events"
+  body:
+    type: json
+    data: |-
+      {
+        "events": [
+          {
+            "name": "Pick colour",
+            "timestamp": {{timestamp_ms}},
+            "props": [
+              {
+                "key": "colour",
+                "value": "{{$randomColor}}"
+              },
+              {
+                "key": "META_OS",
+                "value": "Windows"
+              },
+              {
+                "key": "META_GAME_VERSION",
+                "value": "1.0.0"
+              }
+            ]
+          }
+        ]
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: before-request
+      code: bru.setVar("timestamp_ms", Date.now())
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Track events.
+
+  **Authentication**
+  - Required scope: `write:events`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Body**
+  - `events` - Array of events, each `{ name, timestamp, props? }`. `name` is what will appear in the dashboard. `timestamp` is milliseconds since epoch. `props` is an array of key/value pairs.

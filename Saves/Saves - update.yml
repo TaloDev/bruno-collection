@@ -1,0 +1,42 @@
+info:
+  name: Saves - update
+  type: http
+  seq: 3
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/v1/game-saves/:saveId"
+  params:
+    - name: saveId
+      value: "{{saveId}}"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "name": "{{saveName}}",
+        "content": {
+          "example": true
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Update a save.
+
+  **Authentication**
+  - Required scope: `write:gameSaves`.
+  - Authenticated by: `X-Talo-Player`.
+
+  **Path**
+  - `{{saveId}}` - The ID of the save.
+
+  **Body**
+  - `name` (optional) - A new name for the save.
+  - `content` - The new save content (JSON object or string).

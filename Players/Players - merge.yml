@@ -1,0 +1,33 @@
+info:
+  name: Players - merge
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/players/merge"
+  body:
+    type: json
+    data: |-
+      {
+        "playerId1": "{{playerId1}}",
+        "playerId2": "{{playerId2}}"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Merge two players. Player 2 is merged into player 1.
+
+  **Authentication**
+  - Required scopes: `read:players`, `write:players`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Body**
+  - `playerId1` - The target player (player 2 is merged into this).
+  - `playerId2` - The source player. Cannot have a Steam, Google Play Games, or Talo authentication alias.

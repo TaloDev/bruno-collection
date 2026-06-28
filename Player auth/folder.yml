@@ -1,0 +1,14 @@
+info:
+  name: Player auth
+  type: folder
+  seq: 8
+
+request:
+  auth: inherit
+
+docs:
+  content: |
+    Talo provides a powerful and secure authentication system out of the box. You can use Talo to authenticate players using their email, username, or any other identifier you choose.
+
+    Learn more about player authentication [here](https://trytalo.com/players#authentication?utm_source=bruno-docs).
+  type: text/markdown

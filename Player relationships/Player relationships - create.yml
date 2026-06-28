@@ -1,0 +1,33 @@
+info:
+  name: Player relationships - create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/players/relationships"
+  body:
+    type: json
+    data: |-
+      {
+        "aliasId": {{targetAliasId}},
+        "relationshipType": "unidirectional"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Create a subscription request to another player.
+
+  **Authentication**
+  - Required scope: `write:playerRelationships`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Body**
+  - `aliasId` - The ID of the player alias to subscribe to.
+  - `relationshipType` - `"unidirectional"` or `"bidirectional"`.

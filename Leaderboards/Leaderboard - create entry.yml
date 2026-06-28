@@ -1,0 +1,45 @@
+info:
+  name: Leaderboard - create entry
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/leaderboards/:leaderboardInternalName/entries"
+  params:
+    - name: leaderboardInternalName
+      value: "{{leaderboardInternalName}}"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "score": 100,
+        "props": [
+          {
+            "key": "level",
+            "value": "5"
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Create or update a leaderboard entry. If the leaderboard mode is `unique`, an existing entry for the player will be updated with the new score (and the response's `updated` field will be `true`). Set the `X-Talo-Continuity-Timestamp` header (milliseconds since epoch) to back-date `createdAt` (the API key must have the `write:continuityRequests` scope, and the timestamp must be in the past) - use this to revive a unique-period entry whose period has already closed.
+
+  **Authentication**
+  - Required scope: `write:leaderboards`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Path**
+  - `{{leaderboardInternalName}}` - The internal name of the leaderboard.
+
+  **Body**
+  - `score` - A numeric score for the entry.
+  - `props` (optional) - Key/value pairs.

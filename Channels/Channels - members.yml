@@ -1,0 +1,65 @@
+info:
+  name: Channels - members
+  type: http
+  seq: 7
+
+http:
+  method: GET
+  url: "{{baseUrl}}/v1/game-channels/:channelId/members"
+  params:
+    - name: channelId
+      value: "{{channelId}}"
+      type: path
+    - name: page
+      value: "0"
+      type: query
+    - name: playerId
+      value: "{{playerId}}"
+      type: query
+      disabled: true
+    - name: aliasId
+      value: "{{aliasId}}"
+      type: query
+      disabled: true
+    - name: identifier
+      value: ""
+      type: query
+      disabled: true
+    - name: playerPropKey
+      value: ""
+      type: query
+      disabled: true
+    - name: playerPropValue
+      value: ""
+      type: query
+      disabled: true
+    - name: playerGroupId
+      value: "{{groupId}}"
+      type: query
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Get the members of a game channel.
+
+  **Authentication**
+  - Required scope: `read:gameChannels`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Path**
+  - `{{channelId}}` - The ID of the channel.
+
+  **Query**
+  - `page` (optional, default `0`) - The current pagination index.
+  - `playerId` (optional) - Filter members by this player ID.
+  - `aliasId` (optional) - Find a member with this player alias ID.
+  - `identifier` (optional) - Find a member with this identifier.
+  - `playerPropKey` (optional) - Filter members by players with this prop key.
+  - `playerPropValue` (optional) - Filter members by players with a matching prop key and value.
+  - `playerGroupId` (optional) - Filter members by players in this group.

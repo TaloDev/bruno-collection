@@ -1,0 +1,35 @@
+info:
+  name: Player auth - toggle verification
+  type: http
+  seq: 13
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/v1/players/auth/toggle_verification"
+  body:
+    type: json
+    data: |-
+      {
+        "currentPassword": "{{currentPassword}}",
+        "verificationEnabled": true,
+        "email": "{{email}}"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Toggle verification for a player account.
+
+  **Authentication**
+  - Required scopes: `read:players`, `write:players`.
+  - Authenticated by: `X-Talo-Player` + `X-Talo-Alias` + `X-Talo-Session`.
+
+  **Body**
+  - `currentPassword` - The current password of the player.
+  - `verificationEnabled` - The new verification status for the player account.
+  - `email` (optional) - Required when enabling verification if the player has no email set.

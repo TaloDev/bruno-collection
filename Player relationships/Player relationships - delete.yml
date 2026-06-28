@@ -1,0 +1,29 @@
+info:
+  name: Player relationships - delete
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/v1/players/relationships/:subscriptionId"
+  params:
+    - name: subscriptionId
+      value: "{{subscriptionId}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Delete a subscription (unsubscribe from a player).
+
+  **Authentication**
+  - Required scope: `write:playerRelationships`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Path**
+  - `{{subscriptionId}}` - The ID of the subscription to delete.

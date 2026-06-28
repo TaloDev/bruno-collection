@@ -1,0 +1,14 @@
+info:
+  name: Stats
+  type: folder
+  seq: 14
+
+request:
+  auth: inherit
+
+docs:
+  content: |
+    With Talo, you can track game stats on a per-player basis. For example, you could track the number of secrets discovered by a player or the amount of puzzles they've solved. Talo allows you to easily create and increment these kind of stats.
+
+    Learn more about game stats [here](https://trytalo.com/stats?utm_source=bruno-docs).
+  type: text/markdown

@@ -1,0 +1,33 @@
+info:
+  name: Player presence - update
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/v1/players/presence"
+  body:
+    type: json
+    data: |-
+      {
+        "online": true,
+        "customStatus": "Appearing offline"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Update a player's online status and custom status.
+
+  **Authentication**
+  - Required scope: `write:playerPresence`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Body**
+  - `online` (optional) - Whether the player is online.
+  - `customStatus` (optional) - A custom status message for the player.

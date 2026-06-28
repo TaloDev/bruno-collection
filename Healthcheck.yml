@@ -1,0 +1,17 @@
+info:
+  name: Healthcheck
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/v1/health-check"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: Health check endpoint (returns 204).

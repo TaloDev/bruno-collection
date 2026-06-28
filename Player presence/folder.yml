@@ -1,0 +1,12 @@
+info:
+  name: Player presence
+  type: folder
+  seq: 10
+
+request:
+  auth: inherit
+
+docs:
+  content: |
+    The player presence API allows you to automatically track the presence of players in your game. This can be useful for a variety of use cases, such as showing a player as online or offline, setting custom statuses and friends lists.
+  type: text/markdown
