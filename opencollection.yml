@@ -37,9 +37,7 @@ docs:
     - Common errors
     - Authentication guides
 
-    ---
-
-    Last updated **28th June 2026**
+    This collection was last updated **28th June 2026**.
   type: text/markdown
 bundled: false
 extensions:
