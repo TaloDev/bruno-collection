@@ -1,0 +1,14 @@
+info:
+  name: Game API
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit
+
+docs:
+  content: |
+    The **Game API** is the gameplay-orientated API, which authenticates requests on behalf of players. These routes (e.g. `Players`, `Stats`, `Leaderboards`) use the standard game API key: `{{apiKey}}`.
+
+    See the [HTTP API reference](https://docs.trytalo.com/http/authentication) for more details.
+  type: text/markdown

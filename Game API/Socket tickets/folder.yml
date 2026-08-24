@@ -1,7 +1,7 @@
 info:
   name: Socket tickets
   type: folder
-  seq: 14
+  seq: 12
 
 request:
   auth: inherit

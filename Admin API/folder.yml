@@ -1,0 +1,16 @@
+info:
+  name: Admin API
+  type: folder
+  seq: 2
+
+request:
+  auth:
+    type: bearer
+    token: "{{adminApiKey}}"
+
+docs:
+  content: |
+    The **Admin API** lets you programmatically manage your game data using admin API keys scoped to your game. These routes live under the `/admin/v1` prefix and use a separate admin API key: `{{adminApiKey}}`.
+
+    See the [Admin API reference](https://docs.trytalo.com/admin/authentication) for more details.
+  type: text/markdown

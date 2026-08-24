@@ -1,7 +1,7 @@
 info:
   name: Player groups
   type: folder
-  seq: 10
+  seq: 8
 
 request:
   auth: inherit

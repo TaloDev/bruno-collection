@@ -34,8 +34,8 @@ docs:
 
     This collection covers two types of APIs:
 
-    - **Game APIs** - the gameplay-orientated APIs, which authenticates requests on behalf of players. The root folders (e.g. `Players`, `Stats`, `Leaderboards`) contain these routes, and requests use the standard game API key: `{{apiKey}}`. See the [HTTP API reference](https://docs.trytalo.com/http/authentication).
-    - **Admin API** - lets you programmatically manage your game data using admin API keys scoped to your game. These routes live in the `Admin` folder under the `/admin/v1` prefix, and use a separate admin API key: `{{adminApiKey}}`. See the [Admin API reference](https://docs.trytalo.com/admin/authentication).
+    - **Game API** - the gameplay-orientated API, which authenticates requests on behalf of players. These routes live in the `Game API` folder (e.g. `Players`, `Stats`, `Leaderboards`) and use the standard game API key: `{{apiKey}}`. See the [HTTP API reference](https://docs.trytalo.com/http/authentication).
+    - **Admin API** - lets you programmatically manage your game data using admin API keys scoped to your game. These routes live in the `Admin API` folder under the `/admin/v1` prefix, and use a separate admin API key: `{{adminApiKey}}`. See the [Admin API reference](https://docs.trytalo.com/admin/authentication).
 
     Keys for both types of APIs can be created and managed on the [API keys page](https://dashboard.trytalo.com/api-keys).
 
