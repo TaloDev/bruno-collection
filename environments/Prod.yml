@@ -4,3 +4,5 @@ variables:
     value: https://api.trytalo.com
   - secret: true
     name: apiKey
+  - secret: true
+    name: adminApiKey

@@ -32,12 +32,14 @@ docs:
   content: |-
     [Talo](https://trytalo.com?utm_source=bruno-docs) is the easiest way to add leaderboards, player authentication, peer-to-peer multiplayer and more to your game.
 
-    Visit the [Talo docs](https://docs.trytalo.com/docs/http/authentication) for more details:
-    - Request and response examples
-    - Common errors
-    - Authentication guides
+    This collection covers two types of APIs:
 
-    This collection was last updated **28th June 2026**.
+    - **Game APIs** - the gameplay-orientated APIs, which authenticates requests on behalf of players. The root folders (e.g. `Players`, `Stats`, `Leaderboards`) contain these routes, and requests use the standard game API key: `{{apiKey}}`. See the [HTTP API reference](https://docs.trytalo.com/http/authentication).
+    - **Admin API** - lets you programmatically manage your game data using admin API keys scoped to your game. These routes live in the `Admin` folder under the `/admin/v1` prefix, and use a separate admin API key: `{{adminApiKey}}`. See the [Admin API reference](https://docs.trytalo.com/admin/authentication).
+
+    Keys for both types of APIs can be created and managed on the [API keys page](https://dashboard.trytalo.com/api-keys).
+
+    This collection was last updated **24th August 2026**.
   type: text/markdown
 bundled: false
 extensions:

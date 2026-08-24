@@ -1,0 +1,41 @@
+info:
+  name: Admin Stats - create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/v1/game-stats"
+  body:
+    type: json
+    data: |-
+      {
+        "internalName": "gold-collected",
+        "name": "Gold collected",
+        "global": false,
+        "defaultValue": 0,
+        "minTimeBetweenUpdates": 0.5
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Create a game stat.
+
+  **Authentication**
+  - Required scope: `write:stats`.
+
+  **Body**
+  - `internalName` - The internal name of the stat.
+  - `name` - The display name of the stat.
+  - `global` - Whether the stat value is shared across all players.
+  - `maxChange` (optional) - The maximum allowed change to the stat per update.
+  - `minValue` (optional) - The minimum value the stat can be set to.
+  - `maxValue` (optional) - The maximum value the stat can be set to.
+  - `defaultValue` - The default value for the stat.
+  - `minTimeBetweenUpdates` - The minimum time in seconds between updates.

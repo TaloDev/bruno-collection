@@ -1,0 +1,14 @@
+info:
+  name: Leaderboards
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit
+
+docs:
+  content: |
+    Admin endpoints for creating, updating and managing leaderboards.
+
+    Authenticate with an admin API key that has the `read:leaderboards` and `write:leaderboards` scopes.
+  type: text/markdown

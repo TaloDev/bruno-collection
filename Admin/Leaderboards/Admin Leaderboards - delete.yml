@@ -1,0 +1,28 @@
+info:
+  name: Admin Leaderboards - delete
+  type: http
+  seq: 7
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/admin/v1/leaderboards/:leaderboardId"
+  params:
+    - name: leaderboardId
+      value: "{{leaderboardId}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Delete a leaderboard.
+
+  **Authentication**
+  - Required scope: `write:leaderboards`.
+
+  **Path**
+  - `{{leaderboardId}}` - The ID of the leaderboard.

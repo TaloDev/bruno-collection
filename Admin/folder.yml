@@ -1,0 +1,16 @@
+info:
+  name: Admin
+  type: folder
+  seq: 1
+
+request:
+  auth:
+    type: bearer
+    token: "{{adminApiKey}}"
+
+docs:
+  content: |
+    Manage your game's leaderboards and stats with the Admin API. Admin requests are authenticated with an admin API key (set `{{adminApiKey}}`) rather than a standard game API key.
+
+    This collection uses a separate `{{adminApiKey}}` for these routes - set it in your environment to use the Admin API.
+  type: text/markdown

@@ -1,0 +1,39 @@
+info:
+  name: Admin Leaderboards - create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/v1/leaderboards"
+  body:
+    type: json
+    data: |-
+      {
+        "internalName": "highscores",
+        "name": "Highscores",
+        "sortMode": "desc",
+        "unique": true,
+        "refreshInterval": "never"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Create a leaderboard.
+
+  **Authentication**
+  - Required scope: `write:leaderboards`.
+
+  **Body**
+  - `internalName` - The internal name of the leaderboard.
+  - `name` - The display name of the leaderboard.
+  - `sortMode` - How entries are sorted: `asc` or `desc`.
+  - `unique` - Whether each player can only have a single entry.
+  - `refreshInterval` (optional) - How often the leaderboard resets: `never`, `daily`, `weekly`, `monthly` or `yearly`.
+  - `uniqueByProps` (optional) - Whether entries are unique based on their props.

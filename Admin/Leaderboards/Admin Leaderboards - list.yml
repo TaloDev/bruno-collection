@@ -1,0 +1,29 @@
+info:
+  name: Admin Leaderboards - list
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/v1/leaderboards"
+  params:
+    - name: internalName
+      value: ""
+      type: query
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  List all leaderboards.
+
+  **Authentication**
+  - Required scope: `read:leaderboards`.
+
+  **Query**
+  - `internalName` (optional) - Filter leaderboards by internal name.

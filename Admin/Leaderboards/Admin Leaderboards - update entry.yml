@@ -1,0 +1,43 @@
+info:
+  name: Admin Leaderboards - update entry
+  type: http
+  seq: 4
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/admin/v1/leaderboards/:leaderboardId/entries/:leaderboardEntryId"
+  params:
+    - name: leaderboardId
+      value: "{{leaderboardId}}"
+      type: path
+    - name: leaderboardEntryId
+      value: "{{leaderboardEntryId}}"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "newScore": 725.5,
+        "hidden": false
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Update a leaderboard entry.
+
+  **Authentication**
+  - Required scope: `write:leaderboards`.
+
+  **Path**
+  - `{{leaderboardId}}` - The ID of the leaderboard.
+  - `{{leaderboardEntryId}}` - The ID of the leaderboard entry.
+
+  **Body**
+  - `hidden` (optional) - Whether the entry is hidden.
+  - `newScore` (optional) - The new score for the entry.

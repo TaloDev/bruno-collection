@@ -1,0 +1,43 @@
+info:
+  name: Admin Stats - update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/admin/v1/game-stats/:statId"
+  params:
+    - name: statId
+      value: "{{statId}}"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "defaultValue": 5
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Update a game stat.
+
+  **Authentication**
+  - Required scope: `write:stats`.
+
+  **Path**
+  - `{{statId}}` - The ID of the stat.
+
+  **Body**
+  - `name` (optional) - The display name of the stat.
+  - `global` (optional) - Whether the stat value is shared across all players.
+  - `maxChange` (optional) - The maximum allowed change to the stat per update.
+  - `minValue` (optional) - The minimum value the stat can be set to.
+  - `maxValue` (optional) - The maximum value the stat can be set to.
+  - `defaultValue` (optional) - The default value for the stat.
+  - `minTimeBetweenUpdates` (optional) - The minimum time in seconds between updates.

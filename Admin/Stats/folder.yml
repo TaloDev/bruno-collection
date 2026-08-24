@@ -1,0 +1,14 @@
+info:
+  name: Stats
+  type: folder
+  seq: 2
+
+request:
+  auth: inherit
+
+docs:
+  content: |
+    Admin endpoints for creating, updating and managing game stats.
+
+    Authenticate with an admin API key that has the `read:stats` and `write:stats` scopes.
+  type: text/markdown

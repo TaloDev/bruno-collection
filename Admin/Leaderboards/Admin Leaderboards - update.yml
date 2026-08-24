@@ -1,0 +1,42 @@
+info:
+  name: Admin Leaderboards - update
+  type: http
+  seq: 5
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/admin/v1/leaderboards/:leaderboardId"
+  params:
+    - name: leaderboardId
+      value: "{{leaderboardId}}"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Highscores2",
+        "refreshInterval": "weekly"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Update a leaderboard.
+
+  **Authentication**
+  - Required scope: `write:leaderboards`.
+
+  **Path**
+  - `{{leaderboardId}}` - The ID of the leaderboard.
+
+  **Body**
+  - `name` (optional) - The display name of the leaderboard.
+  - `sortMode` (optional) - How entries are sorted: `asc` or `desc`.
+  - `unique` (optional) - Whether each player can only have a single entry.
+  - `refreshInterval` (optional) - How often the leaderboard resets: `never`, `daily`, `weekly`, `monthly` or `yearly`.
+  - `uniqueByProps` (optional) - Whether entries are unique based on their props.

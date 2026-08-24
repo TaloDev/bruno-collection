@@ -1,0 +1,28 @@
+info:
+  name: Admin Stats - delete
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/admin/v1/game-stats/:statId"
+  params:
+    - name: statId
+      value: "{{statId}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Delete a game stat.
+
+  **Authentication**
+  - Required scope: `write:stats`.
+
+  **Path**
+  - `{{statId}}` - The ID of the stat.
