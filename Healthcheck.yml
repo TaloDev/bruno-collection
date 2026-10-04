@@ -6,6 +6,11 @@ info:
 http:
   method: GET
   url: "{{baseUrl}}/v1/health-check"
+  params:
+    - name: body
+      value: "1"
+      type: query
+      disabled: true
   auth: inherit
 
 settings:
@@ -14,4 +19,4 @@ settings:
   followRedirects: true
   maxRedirects: 5
 
-docs: Health check endpoint (returns 204).
+docs: Health check endpoint. Returns 200 if the "body" query parameter is set, otherwise 204.
