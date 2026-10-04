@@ -1,0 +1,28 @@
+info:
+  name: Admin Players - delete
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/admin/v1/players/:playerId"
+  params:
+    - name: playerId
+      value: "{{playerId}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Delete a player.
+
+  **Authentication**
+  - Required scope: `write:players`.
+
+  **Path**
+  - `{{playerId}}` - The ID of the player.

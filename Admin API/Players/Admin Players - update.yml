@@ -1,0 +1,43 @@
+info:
+  name: Admin Players - update
+  type: http
+  seq: 3
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/admin/v1/players/:playerId"
+  params:
+    - name: playerId
+      value: "{{playerId}}"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "props": [
+          {
+            "key": "currentLevel",
+            "value": "72"
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Update a player.
+
+  **Authentication**
+  - Required scope: `write:players`.
+
+  **Path**
+  - `{{playerId}}` - The ID of the player.
+
+  **Body**
+  - `props` (optional) - Key/value pairs. Set `value` to `null` to delete a prop.
+  - `devBuild` (optional) - Whether the player is using a dev build.
