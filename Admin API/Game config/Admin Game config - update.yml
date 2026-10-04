@@ -1,0 +1,37 @@
+info:
+  name: Admin Game config - update
+  type: http
+  seq: 2
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/admin/v1/game-config"
+  body:
+    type: json
+    data: |-
+      {
+        "props": [
+          {
+            "key": "xpRate",
+            "value": "2"
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Update the live config for the game.
+
+  **Authentication**
+  - Required scope: `write:gameConfig`.
+
+  **Body**
+  - `props` - Array of `{ key, value }` pairs. Set `value` to `null` to delete a prop. Values are capped at 4096 characters and keys starting with `META_` are rejected.
+
+  The response's `game` is the updated game.

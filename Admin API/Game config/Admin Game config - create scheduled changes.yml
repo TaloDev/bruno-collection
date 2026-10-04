@@ -1,0 +1,38 @@
+info:
+  name: Admin Game config - create scheduled changes
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/v1/game-config/scheduled-changes"
+  body:
+    type: json
+    data: |-
+      {
+        "changes": [
+          {
+            "key": "xpRate",
+            "value": "3",
+            "applyAt": "2026-09-01T12:00:00.000Z"
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Schedule live config changes for the game.
+
+  **Authentication**
+  - Required scope: `write:gameConfig`.
+
+  **Body**
+  - `changes` - Array of `{ key, value, applyAt }` changes. `applyAt` is an ISO 8601 datetime that must be in the future. Set `value` to `null` to delete the prop when the change is applied. Multiple changes may target the same key.
+
+  The response's `changes` is the created scheduled changes.
