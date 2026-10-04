@@ -1,0 +1,30 @@
+info:
+  name: Admin Game config - delete scheduled change
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/admin/v1/game-config/scheduled-changes/:changeId"
+  params:
+    - name: changeId
+      value: "{{changeId}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Cancel a scheduled live config change.
+
+  **Authentication**
+  - Required scope: `write:gameConfig`.
+
+  **Path**
+  - `{{changeId}}` - The ID of the scheduled change.
+
+  Responds with `204`, or `404` when the change does not exist or belongs to another game.

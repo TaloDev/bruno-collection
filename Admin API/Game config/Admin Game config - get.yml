@@ -1,0 +1,23 @@
+info:
+  name: Admin Game config - get
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/v1/game-config"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Get the live config for the game.
+
+  **Authentication**
+  - Required scope: `read:gameConfig`.
+
+  The response's `config` is an array of `{ key, value }`. Props whose keys start with `META_` are excluded.
