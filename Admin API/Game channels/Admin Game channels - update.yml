@@ -1,0 +1,46 @@
+info:
+  name: Admin Game channels - update
+  type: http
+  seq: 3
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/admin/v1/game-channels/:channelId"
+  params:
+    - name: channelId
+      value: "{{channelId}}"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "name": "new-general-chat",
+        "ownerAliasId": 2,
+        "props": [{ "key": "channelType", "value": "public" }]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Update a game channel.
+
+  **Authentication**
+  - Required scope: `write:gameChannels`.
+
+  **Path**
+  - `{{channelId}}` - The ID of the channel.
+
+  **Body**
+  Only fields included in the request are changed.
+
+  - `name` (optional) - The new name of the channel.
+  - `ownerAliasId` (optional) - The ID of the new owner of the channel.
+  - `props` (optional) - An array of @type(Props:prop).
+  - `autoCleanup` (optional) - Whether the channel should be automatically deleted when the owner leaves or the channel is empty.
+  - `private` (optional) - Private channels require invites to join them.
+  - `temporaryMembership` (optional) - Whether members should be removed when they disconnect.

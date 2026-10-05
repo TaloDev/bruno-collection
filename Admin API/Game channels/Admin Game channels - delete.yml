@@ -1,0 +1,30 @@
+info:
+  name: Admin Game channels - delete
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/admin/v1/game-channels/:channelId"
+  params:
+    - name: channelId
+      value: "{{channelId}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Delete a game channel.
+
+  **Authentication**
+  - Required scope: `write:gameChannels`.
+
+  **Path**
+  - `{{channelId}}` - The ID of the channel.
+
+  The response is `204 No Content`.

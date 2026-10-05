@@ -1,0 +1,40 @@
+info:
+  name: Admin Game channels - list storage
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/v1/game-channels/:channelId/storage"
+  params:
+    - name: channelId
+      value: "{{channelId}}"
+      type: path
+    - name: search
+      value: ""
+      type: query
+      disabled: true
+    - name: page
+      value: "0"
+      type: query
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  List a game channel's storage props.
+
+  **Authentication**
+  - Required scope: `read:gameChannels`.
+
+  **Path**
+  - `{{channelId}}` - The ID of the channel.
+
+  **Query**
+  - `search` (optional) - Search storage properties by key, value or alias identifier.
+  - `page` (optional, default `0`) - The current pagination index (starting at 0).
