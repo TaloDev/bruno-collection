@@ -1,0 +1,42 @@
+info:
+  name: Admin Game channels - create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/v1/game-channels"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "guild-chat",
+        "ownerAliasId": 105,
+        "props": [
+          { "key": "channelType", "value": "guild" },
+          { "key": "guildId", "value": "5912" }
+        ],
+        "autoCleanup": true,
+        "private": false
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Create a game channel.
+
+  **Authentication**
+  - Required scope: `write:gameChannels`.
+
+  **Body**
+  - `name` - The name of the channel.
+  - `ownerAliasId` (optional) - The ID of the new owner of the channel.
+  - `props` (optional) - An array of @type(Props:prop).
+  - `autoCleanup` (optional, default `false`) - Whether the channel should be automatically deleted when the owner leaves or the channel is empty.
+  - `private` (optional, default `false`) - Private channels require invites to join them.
+  - `temporaryMembership` (optional, default `false`) - Whether members should be removed when they disconnect.
