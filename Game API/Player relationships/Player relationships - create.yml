@@ -11,7 +11,13 @@ http:
     data: |-
       {
         "aliasId": {{targetAliasId}},
-        "relationshipType": "unidirectional"
+        "relationshipType": "unidirectional",
+        "props": [
+          {
+            "key": "nickname",
+            "value": "bestie"
+          }
+        ]
       }
   auth: inherit
 
@@ -31,3 +37,4 @@ docs: |-
   **Body**
   - `aliasId` - The ID of the player alias to subscribe to.
   - `relationshipType` - `"unidirectional"` or `"bidirectional"`.
+  - `props` (optional) - Key/value pairs.

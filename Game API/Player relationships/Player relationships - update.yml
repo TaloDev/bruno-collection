@@ -1,0 +1,50 @@
+info:
+  name: Player relationships - update
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/v1/players/relationships/:subscriptionId"
+  params:
+    - name: subscriptionId
+      value: "{{subscriptionId}}"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "props": [
+          {
+            "key": "nickname",
+            "value": "bestie"
+          },
+          {
+            "key": "favourite",
+            "value": null
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Update a subscription.
+
+  **Authentication**
+  - Required scope: `write:playerRelationships`.
+  - Authenticated by: `X-Talo-Alias`.
+
+  **Path**
+  - `{{subscriptionId}}` - The ID of the subscription to update.
+
+  **Body**
+  - `props` - Key/value pairs. Existing keys are updated and new keys are added. Set `value` to `null` to delete a prop.
+
+  Only the subscriber can update a subscription - anyone else gets `404`. If any prop is rejected,
+  the whole update fails with `400` and the rejected keys in `rejectedProps`.
