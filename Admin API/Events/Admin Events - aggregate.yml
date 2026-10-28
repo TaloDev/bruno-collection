@@ -1,0 +1,47 @@
+info:
+  name: Admin Events - aggregate
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/v1/events/aggregate"
+  params:
+    - name: from
+      value: "2026-08-01"
+      type: query
+    - name: to
+      value: "2026-08-31"
+      type: query
+    - name: interval
+      value: day
+      type: query
+    - name: name
+      value: "Level completed"
+      type: query
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Count events into day, week, month or year buckets.
+
+  Buckets align to their interval (weeks start on Monday), and the first and last bucket only count events inside `from`/`to`, so their counts can be partial.
+
+  **Authentication**
+  - Required scope: `read:events`.
+
+  **Query**
+  - `from` - Inclusive UTC start of the range (ISO 8601, YYYY-MM-DD or a millisecond timestamp).
+  - `to` - Inclusive UTC end of the range. The window is at most 90 days.
+  - `interval` - Bucket size: `day`, `week`, `month` or `year`.
+  - `name` (optional, up to 10) - Event names to break the counts down by. Omit it for a single series over all events in the game.
+
+  The response's `series` is an array of `{ name, buckets }` in request order, with each bucket being `{ start, end, count }`. Each series returns one zero-filled bucket per interval step, and the request can produce at most 750 buckets in total (event names × buckets).
+
+  The `X-Talo-Include-Dev-Data` header (set to `1`) includes dev build events.
