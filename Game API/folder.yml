@@ -5,6 +5,15 @@ info:
 
 request:
   auth: inherit
+  scripts:
+    - type: before-request
+      code: |-
+        const claimKey = req.getHeader('X-Talo-Claim-Key') || bru.getVar('claimKey')
+        if (claimKey) {
+          req.setHeader('X-Talo-Claim-Key', claimKey)
+        } else {
+          req.deleteHeader('X-Talo-Claim-Key')
+        }
 
 docs:
   content: |

@@ -1,0 +1,55 @@
+info:
+  name: Players - identify with claim key
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/players/identify"
+  headers:
+    - name: X-Talo-Claim-Key
+      value: ""
+  body:
+    type: json
+    data: |-
+      {
+        "service": "{{service}}",
+        "identifier": "{{identifier}}"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: before-request
+      code: |-
+        const claimKey = req.getHeader('X-Talo-Claim-Key')
+        if (claimKey) {
+          bru.setVar('claimKey', claimKey)
+        }
+    - type: after-response
+      code: |-
+        const data = res.getBody();
+        bru.setVar('aliasId', data.alias.id)
+        bru.setVar('playerId', data.alias.player.id)
+        bru.setVar('socketToken', data.socketToken)
+        if (data.sessionToken) {
+          bru.setVar('sessionToken', data.sessionToken)
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Identify a player, storing the `X-Talo-Claim-Key` header as their claim key. A new player can be created if one does not exist for the given service+identifier pair.
+
+  **Authentication**
+  - Required scope: `read:players`. Add `write:players` if you want the request to create new players.
+  - Authenticated by: `X-Talo-Session` is required when the resolved alias's service is `talo`.
+  - Optional: `X-Talo-Claim-Key` is only stored for new players and once set, must be provided on every request.
+
+  **Body**
+  - `service` - An arbitrary name for how the identifier is chosen (e.g. `anonymous`, `username`, `email`).
+  - `identifier` - The unique identifier (username, email, or numeric ID).
