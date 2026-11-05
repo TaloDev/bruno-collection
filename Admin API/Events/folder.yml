@@ -1,0 +1,14 @@
+info:
+  name: Events
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit
+
+docs:
+  content: |
+    Admin endpoints for reading events and counting them over time.
+
+    Authenticate with an admin API key that has the `read:events` scope.
+  type: text/markdown
