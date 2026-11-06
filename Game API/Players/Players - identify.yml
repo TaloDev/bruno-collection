@@ -36,9 +36,12 @@ settings:
 docs: |-
   Identify a player. A new player can be created if one does not exist for the given service+identifier pair.
 
+  ⚠️ Deprecated: use `Players - identify with claim key` (`POST /v1/players/identify`) instead.
+
   **Authentication**
   - Required scope: `read:players`. Add `write:players` if you want the request to create new players.
   - Authenticated by: `X-Talo-Session` is required when the resolved alias's service is `talo`.
+  - Optional: `X-Talo-Claim-Key` is required if the player has one.
 
   **Query**
   - `{{service}}` - An arbitrary name for how the identifier is chosen (e.g. `anonymous`, `username`, `email`).
