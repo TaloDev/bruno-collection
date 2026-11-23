@@ -27,7 +27,9 @@ docs: |-
   **Authentication**
   - Required scopes: `read:players`, `write:players`.
   - Authenticated by: `X-Talo-Alias`.
+  - Optional: `X-Talo-Claim-Key` - player 1's key, required when either player has a claim key.
 
   **Body**
   - `playerId1` - The target player (player 2 is merged into this).
   - `playerId2` - The source player. Cannot have a Steam, Google Play Games, or Talo authentication alias.
+  - `player2ClaimKey` (optional) - player 2's claim key, if they have one.
