@@ -2,6 +2,8 @@ name: Prod
 variables:
   - name: baseUrl
     value: https://api.trytalo.com
+  - name: socketUrl
+    value: wss://api.trytalo.com
   - secret: true
     name: apiKey
   - secret: true

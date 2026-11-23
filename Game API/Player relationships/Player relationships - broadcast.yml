@@ -1,0 +1,50 @@
+info:
+  name: Player relationships - broadcast
+  type: websocket
+  seq: 7
+
+websocket:
+  url: "{{socketUrl}}/socket?ticket={{socketTicket}}"
+  message:
+    - title: Identify
+      selected: true
+      message:
+        type: json
+        data: |-
+          {
+            "req": "v1.players.identify",
+            "data": {
+              "playerAliasId": {{aliasId}},
+              "socketToken": "{{socketToken}}"
+            }
+          }
+    - title: Broadcast
+      message:
+        type: json
+        data: |-
+          {
+            "req": "v1.player-relationships.broadcast",
+            "data": {
+              "message": "Hello everyone!",
+              "aliasIds": [{{targetAliasId}}]
+            }
+          }
+  auth: inherit
+
+docs: |-
+  Send a message to your confirmed subscribers.
+
+  **Authentication**
+  - Required scope: `write:playerBroadcasts`.
+  - Authenticated by: a socket ticket and an identify message.
+
+  **Flow**
+  1. Run `Socket tickets` to set `{{socketTicket}}`.
+  2. Open the connection and send **Identify**.
+  3. Send **Broadcast**.
+
+  **Data**
+  - `message` - The message to send.
+  - `aliasIds` (optional) - The subscriber alias IDs to target. Omit it to reach every confirmed subscriber. Send `[]` to reach nobody. The limit is 1000 IDs.
+
+  Subscribers receive `v1.player-relationships.broadcast` with the message and your `playerAlias`. They need the `read:playerBroadcasts` scope. This connection does not receive the message.

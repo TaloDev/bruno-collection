@@ -39,6 +39,8 @@ docs:
 
     Keys for both types of APIs can be created and managed on the [API keys page](https://dashboard.trytalo.com/api-keys).
 
+    Socket requests use `{{socketUrl}}` and a socket ticket. See `Player relationships - broadcast` for an example.
+
     This collection was last updated **23rd November 2026**.
   type: text/markdown
 bundled: false

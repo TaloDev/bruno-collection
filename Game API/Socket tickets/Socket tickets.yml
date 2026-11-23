@@ -8,10 +8,20 @@ http:
   url: "{{baseUrl}}/v1/socket-tickets"
   auth: inherit
 
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const data = res.getBody();
+        bru.setVar('socketTicket', data.ticket)
+
 settings:
   encodeUrl: true
   timeout: 0
   followRedirects: true
   maxRedirects: 5
 
-docs: Create a socket ticket. The ticket is valid for 5 minutes and can only be used once.
+docs: |-
+  Create a socket ticket. The ticket is valid for 5 minutes and can only be used once.
+
+  Connect to `{{socketUrl}}/socket?ticket={{socketTicket}}` and send `v1.players.identify`. The response script saves the ticket in `{{socketTicket}}`. See `Player relationships - broadcast` for an example.
