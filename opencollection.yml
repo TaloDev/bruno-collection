@@ -41,7 +41,7 @@ docs:
 
     Socket requests use `{{socketUrl}}` and a socket ticket. See `Player relationships - broadcast` for an example.
 
-    This collection was last updated **23rd November 2026**.
+    This collection was last updated **25th November 2026**.
   type: text/markdown
 bundled: false
 extensions:
