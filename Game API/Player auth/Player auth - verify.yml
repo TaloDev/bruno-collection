@@ -46,5 +46,5 @@ docs: |-
 
   **Body**
   - `aliasId` - The ID of the alias to verify.
-  - `code` - The 6-digit verification code sent to the player (as a string).
+  - `code` - The verification code sent to the player (as a string).
   - `withRefresh` (optional, recommended) - When `true`, the response includes a `refreshToken` (30-day lifetime) alongside a `sessionToken` that becomes short-lived (15 minutes). When `false` or omitted, the `sessionToken` is long-lived (no expiry) and no `refreshToken` is returned.
